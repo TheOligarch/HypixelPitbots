@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  pitbots-bots:
+    build: ./src/pitBots-Bots
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:3
+    # restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: HypixelPitBots
+      MONGO_INITDB_ROOT_USERNAME: Josh
+      MONGO_INITDB_ROOT_PASSWORD: Brown
+
+#     volumes:
+#       - mongodb:/data/db
+# volumes:
+#   mongodb:
