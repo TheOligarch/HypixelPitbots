@@ -9,6 +9,8 @@ services:
     build: ./src/mainController
     depends_on:
       - mongodb
+    ports:
+      - "443:443"
   mongodb:
     image: mongo:3
     # restart: unless-stopped
