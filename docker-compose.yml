@@ -5,6 +5,10 @@ services:
     build: ./src/pitBots-Bots
     depends_on:
       - mongodb
+  mainController:
+    build: ./src/mainController
+    depends_on:
+      - mongodb
   mongodb:
     image: mongo:3
     # restart: unless-stopped
@@ -15,7 +19,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: Josh
       MONGO_INITDB_ROOT_PASSWORD: Brown
 
-#     volumes:
-#       - mongodb:/data/db
-# volumes:
-#   mongodb:
+    volumes:
+      - mongodb:/data/db
+volumes:
+  mongodb:
