@@ -5,7 +5,8 @@ services:
     build: ./src/pitBots-Bots
     depends_on:
       - mongodb
-  mainController:
+      - maincontroller
+  maincontroller:
     build: ./src/mainController
     depends_on:
       - mongodb

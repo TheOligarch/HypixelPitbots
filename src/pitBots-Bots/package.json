@@ -1,0 +1,23 @@
+{
+  "name": "HypixelPitbots",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheOligarch/HypixelPitbots.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheOligarch/HypixelPitbots/issues"
+  },
+  "homepage": "https://github.com/TheOligarch/HypixelPitbots#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mineflayer": "^3.9.0",
+    "mineflayer-pathfinder": "^1.7.0"
+  }
+}
