@@ -23,7 +23,7 @@ module.exports = {
 ],
     hidden: ["dev"],
     defaultPermission: false,
-    execute(interaction, client, paguClient) {
+    async execute(interaction, client, paguClient) {
         if (paguClient.options.options.devs.includes(interaction.user.id)) {
             try {
                 const clean = (text) => {
@@ -43,10 +43,9 @@ module.exports = {
                 }
                 else {
                     try {
-                        var startTime = new Date().getTime()
-                        let evaled = eval(code);
-                        var endTime = new Date().getTime()
-                        embed.setTitle(`Eval - Success \nEvaluation took: ${paguClient.Util.findTimeUntil(startTime,endTime)}`);
+                        var startTime = performance.now()
+                        let evaled = await eval(code)
+                        embed.setTitle(`Eval - Success \nEvaluation took: ${(performance.now()-startTime).toFixed(2)}MS`);
                         embed.setDescription(`\`\`\`xl\n${clean(evaled)}\n\`\`\``);
                     }
                     catch (e) {
@@ -55,8 +54,8 @@ module.exports = {
                         embed.setDescription(`\`\`\`xl\n${clean(e)}\n\`\`\``);
                     }
                 }
-                console.log(interaction.options.getBoolean('empheral'))
                 interaction.reply({embeds:[embed], ephemeral: interaction.options.getBoolean('ephemeral')??false});
+                
             }
             catch (e) {
                 paguClient.Util.log(__filename, "error", e, true);

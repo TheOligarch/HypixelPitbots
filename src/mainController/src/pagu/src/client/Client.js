@@ -100,34 +100,34 @@ class Pagu extends EventEmitter {
       if (!options.client)
         throw "You need to initialize the client with a discord.js client";
       Promise.all([
-        (async () => {
-          try {
-            mongoose.connection
-              .on("connected", () => {
-                Util.log(__filename, "log", "Connected to the Mongo Database!");
-              })
-              .on("disconnected", () => {
-                Util.log(
-                  __filename,
-                  "error",
-                  "The Mongo Database was disconnected!",
-                  true
-                );
-              });
-            await mongoose.connect(options.options.mongoURI, {
-              useNewUrlParser: true,
-              useUnifiedTopology: true,
-              useFindAndModify: false,
-            });
-          } catch (e) {
-            Util.log(
-              __filename,
-              "error",
-              "There was an error connecting to the Mongo Database!"
-            );
-            Util.log(__filename, "error", e, true);
-          }
-        })(),
+        // (async () => {
+        //   try {
+        //     mongoose.connection
+        //       .on("connected", () => {
+        //         Util.log(__filename, "log", "Connected to the Mongo Database!");
+        //       })
+        //       .on("disconnected", () => {
+        //         Util.log(
+        //           __filename,
+        //           "error",
+        //           "The Mongo Database was disconnected!",
+        //           true
+        //         );
+        //       });
+        //     await mongoose.connect(options.options.mongoURI, {
+        //       useNewUrlParser: true,
+        //       useUnifiedTopology: true,
+        //       useFindAndModify: false,
+        //     });
+        //   } catch (e) {
+        //     Util.log(
+        //       __filename,
+        //       "error",
+        //       "There was an error connecting to the Mongo Database!"
+        //     );
+        //     Util.log(__filename, "error", e, true);
+        //   }
+        // })(),
         Util.registerSchemas(options, this),
         Util.registerCache(options, this),
         Util.addCommands(options, this),

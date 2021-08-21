@@ -9,25 +9,7 @@ const Pagu = require('../pagu/pagu.js')
 const discord = require('discord.js')
 const Client = new discord.Client({ intents: [discord.Intents.FLAGS.GUILDS, "GUILD_MESSAGES"] })
 
-Client.on('ready', async() => {
-    const PaguClient = await new Pagu.Client({
-        client: Client, options: {
-            mongoURI: process.env.MONGODB_URI,
-            commandDir: "/src/src/commands",
-            devs: [
-                "406920919131488268"
-            ],
-            niceCategory: {
-                dev: "<:dev:865771194531184661> Dev",
-                utility: ":gear: Utility",
-                none: ":question: None",
-            },
-            niceCommands: {
-                
-            }
-        }
-    });
-})
+
 
 
 
@@ -45,9 +27,31 @@ const wsServer = new ws.Server({
     server: server
 });
 wsServer.on('connection', (ws) => {
-    ws.on('messageCreate', function incoming(data) {
+    console.log('hello')
+    ws.on('message', function incoming(data) {
 
     });
 })
-
+Client.on('ready', async() => {
+    const PaguClient = await new Pagu.Client({
+        client: Client, options: {
+            customPasses: {
+                ws: wsServer
+            },
+            mongoURI: process.env.MONGODB_URI,
+            commandDir: "/src/src/commands",
+            devs: [
+                "406920919131488268"
+            ],
+            niceCategory: {
+                dev: "<:dev:865771194531184661> Dev",
+                utility: ":gear: Utility",
+                none: ":question: None",
+            },
+            niceCommands: {
+                
+            }
+        }
+    });
+})
 Client.login(process.env.DISCORDTOKEN)

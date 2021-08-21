@@ -1,5 +1,6 @@
 require('dotenv').config()
 const mineflayer = require('mineflayer')
+const ws = require('ws')
 async function createMultiple(bots, constructor) {
   const {
     Worker,
@@ -25,7 +26,11 @@ createMultiple(['e1ad5b39', 'b854dbab', '4c846ad3', '2dc53541', '395e3f29'], asy
     username: username,
     version: "1.8.9"
   })
+  var websocket = new ws('wss://maincontroller:443', {
+    rejectUnauthorized: false
+  })
   bot.on('login', async () => {
+    
     console.log(`${bot.username} has joined ${bot._client.socket._host}`)
     bot.setControlState('sprint', true)
   })
